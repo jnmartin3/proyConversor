@@ -1,7 +1,8 @@
 package proyConversor;
-import javax.swing.*;
 
-public class Marco extends JFrame {
+import javax.swing.JFrame;
+
+class Marco extends JFrame {
 
 	public Marco() {
 		setBounds(500, 300, 400, 200);
@@ -11,7 +12,5 @@ public class Marco extends JFrame {
 		Lamina miLamina = new Lamina();
 		add(miLamina);
 	}
-	
-	
-	
+		
 }

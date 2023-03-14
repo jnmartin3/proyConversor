@@ -50,84 +50,139 @@ public class convierteTipoCambio {
 	
 	
 
-//FUNCIONES DE CONVERSION DE TIPOS DE CAMBIO	(Codigo muy repetido, deberia mejorar)	
+//FUNCIONES DE CONVERSION DE TIPOS DE CAMBIO
+	
+	//Clase que pide ingreso de dato con JOptionPane, valida el ingreso, calcula y muestra en pantalla.
+	// Validacion por conversion del String a double y captura de excepciones
+	// las validaciones probadas son: no ser negativo, no contener caracteres, poseer punto y no coma.
+	private void ingresoValido(String monedaIn, String monedaOut, double conversion) {
+		
+		String ingreso;
+		
+		ingreso = JOptionPane.showInputDialog(null, "Ingrese cantidad a convertir: ", "Conversión de " + monedaIn + " a " + monedaOut, JOptionPane.DEFAULT_OPTION);
 
+		try {	//probamos si la conversión del numero ingresado a double se hace correctamente
+			// pudiendo no ser asi si dispone de caracteres alfanumericos o separadores decimales
+			//que no sean puntos
+		
+			double numero = Double.parseDouble(ingreso);
+			
+			if(numero < 0) {
+				JOptionPane.showMessageDialog(null, "El numero ingresado es negativo, no es posible, reintente");
+			}			
+		
+			//En la muestra del dato uso Expresiones Regulares para indicarle que muestre solo dos decimales %.2f
+			JOptionPane.showMessageDialog(null, numero + monedaIn + " equivale a "
+					+ String.format("%.2f", numero * conversion) + monedaOut, "Conversión de " + monedaIn 
+					+ " a " + monedaOut, JOptionPane.DEFAULT_OPTION);
+			
+			
+		//Capturamos la excepción, mostramos por pantalla y consola, pero seguimos. 
+		} catch(NumberFormatException e) {
+		System.out.println("El dato ingresado no puede ser procesado, reintente.");
+		JOptionPane.showMessageDialog(null, "El dato ingresado no puede ser procesado, reintente.");
+		e.printStackTrace();
+		} 
+		
+	}
+
+	//Clases que indican, segun el cambio a realizar, las monedas de ingreso/egreso y tipo de cambio
+	//Aqui deberia intervenir la conexion a API
 	private Object convPesoADolar() {
-		System.out.println("Conversión de Peso a Dolar");
-		double numero = Double.parseDouble(JOptionPane.showInputDialog(null, "Ingrese cantidad de Pesos", "Conversión Peso a Dolar", JOptionPane.DEFAULT_OPTION));
-		JOptionPane.showMessageDialog(null, numero + " Pesos equivale a " + (numero * 0.005) + 
-				" Dólar", "Conversión Peso a Dólar", JOptionPane.DEFAULT_OPTION);
+	
+		String monedaIn = " Peso ";		
+		String monedaOut = " Dolar ";		
+		double conversion = 0.005;		
+		System.out.println("Conversión de " + monedaIn + " a " + monedaOut);		
+		ingresoValido(monedaIn, monedaOut, conversion);		
 		return null;
+		
 	}
 		
 	private Object convPesoAEuro() {
-		System.out.println("Conversión de Peso a Euro");
-		double numero = Double.parseDouble(JOptionPane.showInputDialog(null, "Ingrese cantidad de Pesos", "Conversión Peso a Euros", JOptionPane.DEFAULT_OPTION));
-		JOptionPane.showMessageDialog(null, numero + " Pesos equivale a " + (numero * 0.0047) + 
-				" Euros", "Conversión Peso a Euros", JOptionPane.DEFAULT_OPTION);
+		
+		String monedaIn = " Peso ";		
+		String monedaOut = " Euro ";		
+		double conversion = 0.0047;		
+		System.out.println("Conversión de " + monedaIn + " a " + monedaOut);		
+		ingresoValido(monedaIn, monedaOut, conversion);		
 		return null;
 	}
 	
 	private Object convPesoALibra() {
-		System.out.println("Conversión de Peso a Libra Esterlina");
-		double numero = Double.parseDouble(JOptionPane.showInputDialog(null, "Ingrese cantidad de Pesos", "Conversión Peso a Libras Esterlinas", JOptionPane.DEFAULT_OPTION));
-		JOptionPane.showMessageDialog(null, numero + " Pesos equivale a " + (numero * 0.0042) + 
-				" Libras Esterlinas", "Conversión Peso a Libras Esterlinas", JOptionPane.DEFAULT_OPTION);
+		
+		String monedaIn = " Peso ";		
+		String monedaOut = " Libra Esterlina ";		
+		double conversion = 0.0042;		
+		System.out.println("Conversión de " + monedaIn + " a " + monedaOut);		
+		ingresoValido(monedaIn, monedaOut, conversion);		
 		return null;
+		
 	}
 
 	private Object convPesoAYen() {
-		System.out.println("Conversión de Peso a Yen Japonés");
-		double numero = Double.parseDouble(JOptionPane.showInputDialog(null, "Ingrese cantidad de Pesos", "Conversión Peso a Yen Japonés", JOptionPane.DEFAULT_OPTION));
-		JOptionPane.showMessageDialog(null, numero + " Pesos equivale a " + (numero * 0.69) + 
-				" Yen Japonés", "Conversión Peso a Yen Japonés", JOptionPane.DEFAULT_OPTION);
+		
+		String monedaIn = " Peso ";		
+		String monedaOut = " Yen ";		
+		double conversion = 0.69;		
+		System.out.println("Conversión de " + monedaIn + " a " + monedaOut);		
+		ingresoValido(monedaIn, monedaOut, conversion);		
 		return null;
+		
 	}
 	
 	private Object convPesoAWon() {
-		System.out.println("Conversión de Peso a Won sul-coreano");
-		double numero = Double.parseDouble(JOptionPane.showInputDialog(null, "Ingrese cantidad de Pesos", "Conversión Peso a Won sul-coreano", JOptionPane.DEFAULT_OPTION));
-		JOptionPane.showMessageDialog(null, numero + " Pesos equivale a " + (numero * 6.6) + 
-				" Won sul-coreano", "Conversión Peso a Won sul-coreano", JOptionPane.DEFAULT_OPTION);
+		
+		String monedaIn = " Peso ";		
+		String monedaOut = " Won ";		
+		double conversion = 6.6;		
+		System.out.println("Conversión de " + monedaIn + " a " + monedaOut);		
+		ingresoValido(monedaIn, monedaOut, conversion);		
 		return null;
+		
 	}
 
 	private Object convDolAPeso() {
-		System.out.println("Conversión de Dólar a Peso");
-		double numero = Double.parseDouble(JOptionPane.showInputDialog(null, "Ingrese cantidad de Dólares", "Conversión Dólar a Peso", JOptionPane.DEFAULT_OPTION));
-		JOptionPane.showMessageDialog(null, numero + " Dólares equivale a " + (numero * 199.68) + 
-				" Pesos", "Conversión Dólar a Peso", JOptionPane.DEFAULT_OPTION);
+		String monedaIn = " Dolar ";		
+		String monedaOut = " Peso ";		
+		double conversion = 199.68;		
+		System.out.println("Conversión de " + monedaIn + " a " + monedaOut);		
+		ingresoValido(monedaIn, monedaOut, conversion);		
 		return null;
 	}
 	private Object convEurAPeso() {
-		System.out.println("Conversión de Euro a Peso");
-		double numero = Double.parseDouble(JOptionPane.showInputDialog(null, "Ingrese cantidad de Euros", "Conversión Euro a Peso", JOptionPane.DEFAULT_OPTION));
-		JOptionPane.showMessageDialog(null, numero + " Euros equivale a " + (numero * 210.72) + 
-				" Pesos", "Conversión Euro a Peso", JOptionPane.DEFAULT_OPTION);
+		String monedaIn = " Euro ";		
+		String monedaOut = " Peso ";		
+		double conversion = 210.72;		
+		System.out.println("Conversión de " + monedaIn + " a " + monedaOut);		
+		ingresoValido(monedaIn, monedaOut, conversion);		
 		return null;
 	}
 	
 	private Object convLibraAPeso() {
-		System.out.println("Conversión de Libra Esterlina a Peso");
-		double numero = Double.parseDouble(JOptionPane.showInputDialog(null, "Ingrese cantidad de Libras Esterlinas", "Conversión Libra Esterlina a Peso", JOptionPane.DEFAULT_OPTION));
-		JOptionPane.showMessageDialog(null, numero + " Libras Esterlinas equivale a " + (numero * 236.25) + 
-				" Pesos", "Conversión Libras Esterlinas a Peso", JOptionPane.DEFAULT_OPTION);
+		String monedaIn = " Libra Esterlina ";		
+		String monedaOut = " Peso ";		
+		double conversion = 236.25;		
+		System.out.println("Conversión de " + monedaIn + " a " + monedaOut);		
+		ingresoValido(monedaIn, monedaOut, conversion);		
 		return null;
 	}
 	
 	private Object convYenAPeso() {
-		System.out.println("Conversión de Yen Japonés a Peso");
-		double numero = Double.parseDouble(JOptionPane.showInputDialog(null, "Ingrese cantidad de Yen Japonés", "Conversión Yen Japonés a Peso", JOptionPane.DEFAULT_OPTION));
-		JOptionPane.showMessageDialog(null, numero + " Yen Japonés equivale a " + (numero * 1.46) + 
-				" Pesos", "Conversión Yen Japonés a Peso", JOptionPane.DEFAULT_OPTION);
+		String monedaIn = " Yen ";		
+		String monedaOut = " Peso ";		
+		double conversion = 1.46;		
+		System.out.println("Conversión de " + monedaIn + " a " + monedaOut);		
+		ingresoValido(monedaIn, monedaOut, conversion);		
 		return null;
 	}
 	
 	private Object convWonAPeso() {
-		System.out.println("Conversión de Won sul-coreano a Peso");
-		double numero = Double.parseDouble(JOptionPane.showInputDialog(null, "Ingrese cantidad de Won sul-coreano", "Conversión Won sul-coreano a Peso", JOptionPane.DEFAULT_OPTION));
-		JOptionPane.showMessageDialog(null, numero + " Won sul-coreano equivale a " + (numero * 0.15) + 
-				" Pesos", "Conversión Won sul-coreano a Peso", JOptionPane.DEFAULT_OPTION);
+		String monedaIn = " Won ";		
+		String monedaOut = " Peso ";		
+		double conversion = 0.15;		
+		System.out.println("Conversión de " + monedaIn + " a " + monedaOut);		
+		ingresoValido(monedaIn, monedaOut, conversion);		
 		return null;
 	}
 

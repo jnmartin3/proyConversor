@@ -47,54 +47,110 @@ public class convierteTemperatura {
 
 
 //FUNCIONES DE CONVERSION DE TEMPERATURAS	(Codigo muy repetido, deberia mejorar)
+	
+	//Clase que pide ingreso de dato con JOptionPane, valida el ingreso, calcula y muestra en pantalla.
+		// Validacion por conversion del String a double y captura de excepciones
+		// las validaciones probadas son: no ser negativo, no contener caracteres, poseer punto y no coma.
+		private double ingresoValidoTemp(String tempIn, String tempOut) {
+						
+			String ingreso = JOptionPane.showInputDialog(null, "Ingrese temperatura a convertir: ", "Conversión de " + tempIn + " a " + tempOut, JOptionPane.DEFAULT_OPTION);
+			double numero;
+			
+			try {	//probamos si la conversión del numero ingresado a double se hace correctamente
+				// pudiendo no ser asi si dispone de caracteres alfanumericos o separadores decimales
+				//que no sean puntos
+			
+				numero = Double.parseDouble(ingreso);			
+			
+				return numero;				
+				
+			//Capturamos la excepción, mostramos por pantalla y consola, pero seguimos. 
+			} catch(NumberFormatException e) {
+			System.out.println("El dato ingresado no puede ser procesado, reintente.");
+			JOptionPane.showMessageDialog(null, "El dato ingresado no puede ser procesado, reintente.");
+			return 999999.999999;	//devuelve este dato para indicarme que hubo un error en la conversion
+			//e.printStackTrace();
+			} 
+			
+		}
 
-	private Object convCelAFar() {
-		System.out.println("Conversión Celsius a Farenheit");
-		double numero = Double.parseDouble(JOptionPane.showInputDialog("Ingrese temperatura en °Celsius"));
-		JOptionPane.showMessageDialog(null, numero + " °Celsius equivale a " + ((numero * 9/5) + 32) + 
-				" °Farenheit", "Conversión °Celsius a °Farenheit", JOptionPane.DEFAULT_OPTION);
-		return null;
+	private void convCelAFar() {
+		
+		String tempIn = "Celsius";
+		String tempOut = "Farenheit";
+		System.out.println("Conversión de " + tempIn + " a " + tempOut);		
+		double numero = ingresoValidoTemp(tempIn, tempOut);		
+		if(numero != 999999.999999) {
+			JOptionPane.showMessageDialog(null, numero + " °" + tempIn + " equivale a " + String.format("%.3f",((numero * 9/5) + 32)) + 
+					" °" + tempOut, "Conversión °" + tempIn + " a °" + tempOut, JOptionPane.DEFAULT_OPTION);
+		}
 	}
 
-	private Object convCelAKel() {
-		System.out.println("Conversión Celsius a Kelvin");
-		double numero = Double.parseDouble(JOptionPane.showInputDialog("Ingrese temperatura en °Celsius"));
-		JOptionPane.showMessageDialog(null, numero + " °Celsius equivale a " + (numero + 273.15) + 
-				" Kelvin", "Conversión °Celsius a Kelvin", JOptionPane.DEFAULT_OPTION);
-		return null;
+	private void convCelAKel() {
+		
+		String tempIn = "Celsius";
+		String tempOut = "Kelvin";
+		System.out.println("Conversión de " + tempIn + " a " + tempOut);		
+		double numero = ingresoValidoTemp(tempIn, tempOut);		
+		if(numero != 999999.999999) {
+			JOptionPane.showMessageDialog(null, numero + " °" + tempIn + " equivale a " + String.format("%.3f",
+					(numero + 273.15)) + " °" + tempOut, "Conversión °" + tempIn + " a °" + tempOut, 
+					JOptionPane.DEFAULT_OPTION);
+		}
+		
 	}
 	
-	private Object convFarACel() {
-		System.out.println("Conversión Farenheit a Celsius");
-		double numero = Double.parseDouble(JOptionPane.showInputDialog("Ingrese temperatura en °Farenheit"));
-		JOptionPane.showMessageDialog(null, numero + " °Farenheit equivale a " + ((numero-32) *5/9) + 
-				" °Celsius", "Conversión °Farenheit a °Celsius", JOptionPane.DEFAULT_OPTION);
-		return null;
+	private void convFarACel() {
+		
+		String tempIn = "Farenheit";
+		String tempOut = "Celsius";
+		System.out.println("Conversión de " + tempIn + " a " + tempOut);		
+		double numero = ingresoValidoTemp(tempIn, tempOut);		
+		if(numero != 999999.999999) {
+			JOptionPane.showMessageDialog(null, numero + " °" + tempIn + " equivale a " + String.format("%.3f",((numero-32) *5/9)) + 
+					" °" + tempOut, "Conversión °" + tempIn + " a °" + tempOut, JOptionPane.DEFAULT_OPTION);
+		}
+		
 	}
 
-	private Object convKelACel() {
-		System.out.println("Conversión Kelvin a Celsius");
-		double numero = Double.parseDouble(JOptionPane.showInputDialog("Ingrese temperatura en Kelvin"));
-		JOptionPane.showMessageDialog(null, numero + " Kelvin equivale a " + (numero - 273.15) + 
-				" °Celsius", "Conversión Kelvin a °Celsius", JOptionPane.DEFAULT_OPTION);
-		return null;
+	private void convKelACel() {
+		
+		String tempIn = "Kelvin";
+		String tempOut = "Celsius";
+		System.out.println("Conversión de " + tempIn + " a " + tempOut);		
+		double numero = ingresoValidoTemp(tempIn, tempOut);		
+		if(numero != 999999.999999) {
+			JOptionPane.showMessageDialog(null, numero + " °" + tempIn + " equivale a " + String.format("%.3f",(numero - 273.15)) + 
+					" °" + tempOut, "Conversión °" + tempIn + " a °" + tempOut, JOptionPane.DEFAULT_OPTION);
+		}
+		
 	}
 	
-	private Object convFarAKel() {
-		System.out.println("Conversión Farenheit a Kelvin");
-		double numero = Double.parseDouble(JOptionPane.showInputDialog("Ingrese temperatura en °Farenheit"));
-		JOptionPane.showMessageDialog(null, numero + " °Farenheit equivale a " + (((numero-32) *5/9) + 273.15) + 
-				" Kelvin", "Conversión °Farenheit a Kelvin", JOptionPane.DEFAULT_OPTION);
-		return null;
+	private void convFarAKel() {
+		
+		String tempIn = "Farenheit";
+		String tempOut = "Kelvin";
+		System.out.println("Conversión de " + tempIn + " a " + tempOut);		
+		double numero = ingresoValidoTemp(tempIn, tempOut);		
+		if(numero != 999999.999999) {
+			JOptionPane.showMessageDialog(null, numero + " °" + tempIn + " equivale a " + String.format("%.3f",(((numero-32) *5/9) + 273.15)) + 
+					" °" + tempOut, "Conversión °" + tempIn + " a °" + tempOut, JOptionPane.DEFAULT_OPTION);
+		}
+		
 	}
 
 
-	private Object convKelAFar() {
-		System.out.println("Conversión Kelvin a Farenheit");
-		double numero = Double.parseDouble(JOptionPane.showInputDialog("Ingrese temperatura en Kelvin"));
-		JOptionPane.showMessageDialog(null, numero + " Kelvin equivale a " + ((numero - 273.15) * 9/5 + 32) + 
-				" °Farenheit", "Conversión Kelvin a °Farenheit", JOptionPane.DEFAULT_OPTION);
-		return null;
+	private void convKelAFar() {
+		
+		String tempIn = "Kelvin";
+		String tempOut = "Farenheit";
+		System.out.println("Conversión de " + tempIn + " a " + tempOut);		
+		double numero = ingresoValidoTemp(tempIn, tempOut);		
+		if(numero != 999999.999999) {
+			JOptionPane.showMessageDialog(null, numero + " °" + tempIn + " equivale a " + String.format("%.3f",((numero - 273.15) * 9/5 + 32)) + 
+					" °" + tempOut, "Conversión °" + tempIn + " a °" + tempOut, JOptionPane.DEFAULT_OPTION);
+		}
+		
 	}
 
 }
